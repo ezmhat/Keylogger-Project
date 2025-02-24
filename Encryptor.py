@@ -13,4 +13,5 @@ class Encryptor:
     def decrypt(self, encrypted_hex: str) -> str:
         encrypted_data = bytes.fromhex(encrypted_hex).decode('utf-8')
         return self.xor_encrypt(encrypted_data)
+    #yte
 
