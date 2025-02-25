@@ -1,0 +1,86 @@
+body{
+    background: url("https://www.yo-yoo.co.il/rekaim/images/uploads/abstract-1891289_1280.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #d9eb76;
+}
+form{
+    width: 40%;
+    color: rgb(173, 21, 24);
+    font: normal 26px 'pauzafot-book', Arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color:#cac4c431;
+    border-radius: 15px;
+}
+
+fieldset{
+    border-radius: 15px;
+    box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
+}
+
+img{
+    border: black;
+    width: 120px;
+    height: 120px;
+    border-radius: 58px !important;
+}
+
+p{
+    padding-top: 0%;
+}
+
+.inputDiv{
+    margin: 14px;
+}
+
+label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: Courier New;
+}
+
+input{
+    border:0;
+    border-radius: 20px;
+    box-shadow: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    border: solid 1px #e4e4e4;
+    direction: ltr;
+    padding: 5px 15px;
+    font: normal 26px 'pauzafot-book', Arial, sans-serif;
+    text-align: center;
+}
+
+input[type=text] {
+    border: 2px solid red;
+}
+
+input[type=password] {
+    border: 2px solid red;
+}
+
+button{
+    border: 0;
+    font: normal 18px / 32px 'NarkisBlock-CondensedThin', Arial, sans-serif;
+    color: #fff;
+    background: #a63030;
+    border-radius: 22px;
+    display: inline-block;
+    padding: 4px 15px;
+    margin-left: 5px;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
