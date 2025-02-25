@@ -11,6 +11,7 @@ class NetworkWriter(IWriter):
 
                 if response.status_code == 200:
                     print("Données envoyées avec succès !")
+                    return response
                 else:
                     print(f"Erreur : {response.status_code} - {response.text}")
             else:
