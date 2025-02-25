@@ -4,22 +4,22 @@ from datetime import datetime
 from IWriter import IWriter
 
 class FileWriter(IWriter):
-    def send_data(self, data, name_machine):
-        # Récupérer la date du jour au format YYYY-MM-DD
-        today_date = datetime.today().strftime("%Y-%m-%d")
+    def send_data(self, data, computer_id):
+        """Saves logs in the same JSON Lines format as the network logs."""
+        try:
+            log_dir = f"data/{computer_id}/"
+            log_file = os.path.join(log_dir, f"{datetime.now().strftime('%Y-%m-%d')}.jsonl")
 
-        # Construire le chemin du dossier: data/name_machine/today_date/
-        directory = os.path.join("data", name_machine,)
+            # Create directory if it doesn't exist
+            os.makedirs(log_dir, exist_ok=True)
 
-        # Créer les dossiers s'ils n'existent pas
-        os.makedirs(directory, exist_ok=True)
+            with open(log_file, "a", encoding="utf-8") as f:
+                for entry in data:
+                    # Each entry should be written as a single JSON object per line
+                    json.dump(entry, f)
+                    f.write("\n")  # Ensure JSONL format (one object per line)
 
-        # Nom du fichier dans le dossier créé
-        filename = os.path.join(directory, f"{today_date}.txt")
+            print(f"✅ Data successfully written to {log_file}")
 
-        # Écrire les données dans le fichier
-        with open(filename, "a", encoding="utf-8") as file:
-            file.write(json.dumps(data, indent=4) + "\n")
-
-        print(f"Data written to {filename}")
-
+        except Exception as e:
+            print(f"❌ Error writing data to file: {e}")

