@@ -1,30 +1,32 @@
 
 import os
 import json
-from flask import Flask, request, jsonify,session
+from flask import Flask, request, jsonify, session
 
 app = Flask(__name__)
-
+CORS(app)  # Active CORS pour toutes les routes
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
 
-app.secret_key = "super_secret_key" #מפתח לסשנים
+app.secret_key = "super_secret_key"  # מפתח לסשנים
 
-AUTHORIZED_USERS = {"chilli": 1234,"baruch": 4321}
+AUTHORIZED_USERS = {"chilli": 1234, "baruch": 4321}
 
 
-@app.route('/login', methods=['POST']) # בקשה מהמשתמש באתר לזיהוי
+@app.route('/login', methods=['POST'])  # בקשה מהמשתמש באתר לזיהוי
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
     if AUTHORIZED_USERS.get(username) == password:
         session['user'] = username  # שומרים את שם המשתמש בסשן
-        return jsonify({"message": "✅Successfully logged in !"}),200
+        return jsonify({"message": "✅Successfully logged in !"}), 200
     else:
         return jsonify({"error": "❌Incorrect username or password "}), 401
 
 # פונקציה לשמירת הלוגים בצורה יעילה
+
+
 def save_logs(data):
     computer_id = data.get("computer_id")
     logs = data.get("logs", [])
@@ -54,7 +56,8 @@ def save_logs(data):
         with open(log_file, "a") as f:
             f.write(log_entry + "\n")
 
-        print(f"✅ A record has been added to the computer.{computer_id}': {log_entry}")
+        print(
+            f"✅ A record has been added to the computer.{computer_id}': {log_entry}")
 
     return {'message': 'הלוגים נשמרו בהצלחה'}, 200
 
@@ -93,14 +96,15 @@ def read_logs(computer_id, date, start_time=None, end_time=None):
 
     return {'logs': logs}, 200
 
+
 @app.route('/computers', methods=['GET'])
 def get_computers():
     if not os.path.exists(BASE_DIR):  # אם התיקייה לא קיימת, נחזיר רשימה ריקה
         return jsonify({"computers": []})
 
-    computers = [d for d in os.listdir(BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
+    computers = [d for d in os.listdir(
+        BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
     return jsonify({"computers": computers})
-
 
 
 # נתיב להחזרת הלוגים לפי מחשב, תאריך ושעות אופציונליות
@@ -125,4 +129,3 @@ def get_logs():
 # הרצת השרת
 if __name__ == '__main__':
     app.run(debug=True)
-
