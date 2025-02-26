@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .code-container {
+      width: 100%;
+      height: 80%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .code-line {
+      position: absolute;
+      white-space: nowrap;
+      color: #ffffff;
+      font-size: 14px;
+      transform: translateX(100%);
+      animation: moveLine 8s linear;
+      opacity: 0;
+    }
+    
+    .highlight-red {
+      color: #ff0000;
+    }
+    
+    .highlight-gray {
+      color: #a0a0a0;
+    }
+    
+    @keyframes moveLine {
+      0% {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+    }
+    
+    .binary-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      color: rgba(255, 255, 255, 0.05);
+      font-size: 18px;
+      pointer-events: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-content: space-around;
+    }
+    
+    .glow {
+      text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="code-container" id="codeContainer">
+      <div class="binary-bg" id="binaryBg"></div>
+    </div>
+  </div>
+
+  <script>
+    const codeLines = [
+      "function initCyberSystem() {",
+      "  const securityLevel = <span class='highlight-red'>CRITICAL</span>;",
+      "  initializeFirewall(<span class='highlight-gray'>protocols.ADVANCED</span>);",
+      "  for (let i = 0; i < network.nodes.length; i++) {",
+      "    scanNode(network.nodes[i], <span class='highlight-red'>true</span>);",
+      "  }",
+      "  return <span class='highlight-gray'>securityStatus.ACTIVE</span>;",
+      "}",
+      "<span class='highlight-red'>class</span> SecurityMonitor {",
+      "  constructor(params) {",
+      "    this.encryptionLevel = params.encryption || <span class='highlight-red'>256</span>;",
+      "    this.activeDefense = <span class='highlight-gray'>new ActiveDefenseSystem()</span>;",
+      "  }",
+      "  analyzeThreats() {",
+      "    const threats = <span class='highlight-red'>detectIntrusions()</span>;",
+      "    if (threats.length > <span class='highlight-red'>0</span>) {",
+      "      this.activeDefense.engage(<span class='highlight-gray'>COUNTER_MEASURES</span>);",
+      "    }",
+      "  }",
+      "}",
+      "async function breachDetection() {",
+      "  while (<span class='highlight-red'>true</span>) {",
+      "    await monitor.scan();",
+      "    if (monitor.alertLevel > <span class='highlight-red'>THRESHOLD</span>) {",
+      "      <span class='highlight-gray'>notifyAdministrator()</span>;",
+      "      <span class='highlight-red'>lockdownSystem()</span>;",
+      "    }",
+      "    await sleep(<span class='highlight-gray'>5000</span>);",
+      "  }",
+      "}",
+      "function encryptData(data, key) {",
+      "  const cipher = <span class='highlight-gray'>createCipher(\"aes-256-cbc\", key)</span>;",
+      "  let encrypted = cipher.update(data, <span class='highlight-red'>\"utf8\"</span>, <span class='highlight-red'>\"hex\"</span>);",
+      "  encrypted += cipher.final(<span class='highlight-red'>\"hex\"</span>);",
+      "  return encrypted;",
+      "}",
+      "<span class='highlight-red'>const</span> securityProtocol = {",
+      "  version: <span class='highlight-red'>\"v3.8.2\"</span>,",
+      "  timestamp: <span class='highlight-gray'>Date.now()</span>,",
+      "  allowedIPs: [<span class='highlight-red'>\"192.168.1.1\"</span>, <span class='highlight-red'>\"10.0.0.1\"</span>]",
+      "};",
+      "function authenticateUser(credentials) {",
+      "  const hash = <span class='highlight-gray'>generateSHA256(credentials.password)</span>;",
+      "  return database.verify(credentials.username, hash);",
+      "}",
+    ];
+
+    const hackingPhrases = [
+      "<span class='highlight-red glow'>ACCESS DENIED</span>",
+      "<span class='highlight-red glow'>FIREWALL BREACH</span>",
+      "<span class='highlight-red glow'>SYSTEM COMPROMISED</span>",
+      "<span class='highlight-red glow'>INTRUSION DETECTED</span>",
+      "<span class='highlight-gray'>Trace Route Failed</span>",
+      "<span class='highlight-red glow'>ENCRYPTION BROKEN</span>",
+      "<span class='highlight-gray'>Connection Lost</span>",
+      "<span class='highlight-red glow'>DATA EXTRACTION</span>",
+      "<span class='highlight-gray'>Proxy Bypassed</span>",
+      "<span class='highlight-red glow'>SECURITY ALERT</span>"
+    ];
+
+    // Combine code lines with hacking phrases
+    const allLines = [...codeLines, ...hackingPhrases];
+    
+    const codeContainer = document.getElementById('codeContainer');
+    const binaryBg = document.getElementById('binaryBg');
+    
+    // Create binary background
+    for (let i = 0; i < 100; i++) {
+      const binarySpan = document.createElement('span');
+      binarySpan.textContent = Math.random() > 0.5 ? '1' : '0';
+      binarySpan.style.opacity = Math.random() * 0.3 + 0.1;
+      binaryBg.appendChild(binarySpan);
+    }
+    
+    function addCodeLine() {
+      const line = document.createElement('div');
+      line.className = 'code-line';
+      
+      // Choose a random line from the combined array
+      const randomIndex = Math.floor(Math.random() * allLines.length);
+      line.innerHTML = allLines[randomIndex];
+      
+      // Random positioning
+      line.style.top = `${Math.random() * 90}%`;
+      line.style.animationDuration = `${6 + Math.random() * 8}`;
+      line.style.opacity = '0';
+      
+      codeContainer.appendChild(line);
+      
+      // Clean up after animation
+      setTimeout(() => {
+        codeContainer.removeChild(line);
+      }, 15000);
+    }
+    
+    // Start adding code lines at regular intervals
+    const addLineInterval = setInterval(addCodeLine, 400);
+    
+    // Initially add some lines
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        addCodeLine();
+      }, i * 300);
+    }
+    
+    // Make sure intervals are cleared if the page is closed/refreshed
+    window.addEventListener('beforeunload', () => {
+      clearInterval(addLineInterval);
+    });
+  </script>
+</body>
+</html>
