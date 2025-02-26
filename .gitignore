@@ -1,2 +1,6 @@
-.DS_Store
-front-end/.DS_Store
+# Default ignored files
+/music
+/.idea
+/front-end
+/data
+/logs
