@@ -1,30 +1,34 @@
-
 import os
 import json
 from flask import Flask, request, jsonify, session
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-CORS(app)  # Active CORS pour toutes les routes
+CORS(app)
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
 
 app.secret_key = "super_secret_key"  # מפתח לסשנים
 
-AUTHORIZED_USERS = {"chilli": 1234, "baruch": 4321}
+AUTHORIZED_USERS = {"chilli": "1234", "baruch": "4321",
+                    "ezra": "0520", "erez": "1234", "dov": "1234"}
 
 
-@app.route('/login', methods=['POST'])  # בקשה מהמשתמש באתר לזיהוי
+@app.route('/login', methods=['POST'])
 def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
+    username = request.json.get('userName')
+    password = request.json.get('password')
 
-    if AUTHORIZED_USERS.get(username) == password:
-        session['user'] = username  # שומרים את שם המשתמש בסשן
-        return jsonify({"message": "✅Successfully logged in !"}), 200
-    else:
-        return jsonify({"error": "❌Incorrect username or password "}), 401
+    if username not in AUTHORIZED_USERS:
+        return jsonify({"error": "❌ Username does not exist."}), 401
 
-# פונקציה לשמירת הלוגים בצורה יעילה
+    if AUTHORIZED_USERS[username] != str(password):
+        return jsonify({"error": "❌ Incorrect password."}), 401
+
+    # Sauvegarde du nom d'utilisateur dans la session
+    session['user'] = username
+    return jsonify({"message": "✅ Successfully logged in!"}), 200
 
 
 def save_logs(data):
