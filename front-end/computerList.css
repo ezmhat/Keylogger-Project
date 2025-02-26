@@ -1,5 +1,5 @@
 body{
-    background: url("https://www.yo-yoo.co.il/rekaim/images/uploads/abstract-1891289_1280.jpg");
+    background: url("background.jpg");
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -44,7 +44,7 @@ header{
 h1{
     color: #b2a4a4;
     margin-right: 45%;
-    font: bold 30px 'pauzafot-book', Copperplate, sans-serif;
+    font: bold 30px 'pauzafot-book', Papyrus, sans-serif;
 }
 
 #cyberIcon{
@@ -80,7 +80,7 @@ button {
 }
 
 #searchInput{
-    width: 812px;
+    width: 223%;
     line-height: 34px;
     color: rgb(223, 207, 207);
     background-color: rgba(128, 128, 128, 0.301);
