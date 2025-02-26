@@ -1,12 +1,28 @@
 
 import os
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,session
 
 app = Flask(__name__)
 
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
+
+app.secret_key = "super_secret_key" #מפתח לסשנים
+
+AUTHORIZED_USERS = {"chilli": 1234,"baruch": 4321}
+
+
+@app.route('/login', methods=['POST']) # בקשה מהמשתמש באתר לזיהוי
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if AUTHORIZED_USERS.get(username) == password:
+        session['user'] = username  # שומרים את שם המשתמש בסשן
+        return jsonify({"message": "✅Successfully logged in !"}),200
+    else:
+        return jsonify({"error": "❌Incorrect username or password "}), 401
 
 # פונקציה לשמירת הלוגים בצורה יעילה
 def save_logs(data):
@@ -81,6 +97,10 @@ def read_logs(computer_id, date, start_time=None, end_time=None):
 # נתיב להחזרת הלוגים לפי מחשב, תאריך ושעות אופציונליות
 @app.route('/logs', methods=['GET'])
 def get_logs():
+    # בדיקה אם המשתמש מחובר באמצעות סשן
+    if 'user' not in session:
+        return jsonify({'error': '❌ "You must log in first!'}), 401
+
     computer_id = request.args.get('computer_id')
     date = request.args.get('date')
     start_time = request.args.get('start_time')  # שעה התחלתית אופציונלית
