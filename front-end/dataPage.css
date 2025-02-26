@@ -38,13 +38,11 @@ header{
     align-items: center;
     text-decoration: none;
     color:#b2a4a4;
-    font: bold 26px 'pauzafot-book', Copperplate, sans-serif;
+    font: bold 26px 'pauzafot-book', Courier New, sans-serif;
 }
 
 h1{
     color: #b2a4a4;
-    margin-right: 45%;
-    font: bold 30px 'pauzafot-book', Copperplate, sans-serif;
 }
 
 #cyberIcon{
@@ -55,50 +53,8 @@ h1{
     padding: 5px;
 }
 
-#searchComputer{
+#dataTable{
     margin-top: 150px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    padding: none;
-    height: 64px;
-    background-color: rgba(128, 128, 128, 0.301);
-    border-radius: 13px;
-    box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
-}
-
-button {
-    all: unset;
-    display: inline-block;
-    cursor: pointer;
-}
-
-#imgSearch{
-    padding-left: 15px;
-}
-
-#searchInput{
-    width: 812px;
-    line-height: 34px;
-    color: rgb(223, 207, 207);
-    background-color: rgba(128, 128, 128, 0.301);
-    border-radius: 0 10px 10px 0;
-    direction: ltr;
-    font: normal 26px 'pauzafot-book', Courier New, sans-serif;
-}
-
-input::placeholder {
-    color: #b2a4a4;
-    opacity: 1;
-}
-
-input[type=text] {
-    border: 2px solid red;
-}
-
-#computerList{
     list-style: none;
     width: 60%;
     height: 400px;
@@ -112,16 +68,18 @@ input[type=text] {
     box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }
 
-li{
-    padding-left: 10px;
-    padding-top: 10px;
+.listItem{
     color: rgb(223, 207, 207);
     font-family: Courier New; 
     margin: 14px;
     margin-top: 12px !important;
     height: 40px;
     background-color: rgba(128, 128, 128, 0.301);
-    border-color: #e40a0a;
-    border-radius: 10px;
+    border: #efd6d6;
+    border-radius: 20px ;
     left: 0;
+}
+
+td{
+    color: #eae4e4;
 }
