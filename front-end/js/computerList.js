@@ -11,7 +11,7 @@ async function get_computers() {
 
         const data = await response.json();
 
-        box.innerHTML = ""; // מנקה את הרשימה לפני שמוסיפים פריטים חדשים
+        box.innerHTML = ""; 
 
         data.computers.forEach(computer => {
             const item = document.createElement("li");
@@ -29,5 +29,5 @@ async function get_computers() {
 }
 
 function tocomputer(computer) {
-    window.location.href = `date.html?computer=${computer}`;
+    window.location.href = `dataPage.html?computer=${computer}`;
 }
