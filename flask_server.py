@@ -2,9 +2,10 @@
 import os
 import json
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)  # Active CORS pour toutes les routes
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
 
