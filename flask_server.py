@@ -1,14 +1,36 @@
-
 import os
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-
+CORS(app)
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
 
-# פונקציה לשמירת הלוגים בצורה יעילה
+app.secret_key = "super_secret_key"  # מפתח לסשנים
+
+AUTHORIZED_USERS = {"chilli": "1234", "baruch": "4321",
+                    "ezra": "0520", "erez": "1234", "dov": "1234"}
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('userName')
+    password = request.json.get('password')
+
+    if username not in AUTHORIZED_USERS:
+        return jsonify({"error": "❌ Username does not exist."}), 401
+
+    if AUTHORIZED_USERS[username] != str(password):
+        return jsonify({"error": "❌ Incorrect password."}), 401
+
+    # Sauvegarde du nom d'utilisateur dans la session
+    session['user'] = username
+    return jsonify({"message": "✅ Successfully logged in!"}), 200
+
+
 def save_logs(data):
     computer_id = data.get("computer_id")
     logs = data.get("logs", [])
@@ -38,7 +60,8 @@ def save_logs(data):
         with open(log_file, "a") as f:
             f.write(log_entry + "\n")
 
-        print(f"✅ A record has been added to the computer.{computer_id}': {log_entry}")
+        print(
+            f"✅ A record has been added to the computer.{computer_id}': {log_entry}")
 
     return {'message': 'הלוגים נשמרו בהצלחה'}, 200
 
@@ -77,19 +100,24 @@ def read_logs(computer_id, date, start_time=None, end_time=None):
 
     return {'logs': logs}, 200
 
+
 @app.route('/computers', methods=['GET'])
 def get_computers():
     if not os.path.exists(BASE_DIR):  # אם התיקייה לא קיימת, נחזיר רשימה ריקה
         return jsonify({"computers": []})
 
-    computers = [d for d in os.listdir(BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
+    computers = [d for d in os.listdir(
+        BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
     return jsonify({"computers": computers})
-
 
 
 # נתיב להחזרת הלוגים לפי מחשב, תאריך ושעות אופציונליות
 @app.route('/logs', methods=['GET'])
 def get_logs():
+    # בדיקה אם המשתמש מחובר באמצעות סשן
+    if 'user' not in session:
+        return jsonify({'error': '❌ "You must log in first!'}), 401
+
     computer_id = request.args.get('computer_id')
     date = request.args.get('date')
     start_time = request.args.get('start_time')  # שעה התחלתית אופציונלית
@@ -105,4 +133,3 @@ def get_logs():
 # הרצת השרת
 if __name__ == '__main__':
     app.run(debug=True)
-

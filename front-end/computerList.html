@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer list</title>
+    <title>Computer List</title>
     <link rel="stylesheet" type="text/css" href="computerList.css">
+    <script defer src="computerList.js"></script>
 </head>
+
 <body>
     <header>
-        <img id="cyberIcon" src="new_icon.webp" alt="cyber men icon">
+        <img id="cyberIcon" src="new_icon.webp" alt="Cyber Men Icon">
         <nav>
             <section id="navSection">
                 <span class="navItem">
                     <a class="navA" href="./loginPage.html">
-                        <img src="png/bxs-lock.png" alt="lock icon"><p>exit</p></a>
-                    </span>
+                        <img src="png/bxs-lock.png" alt="Lock Icon">
+                        <p>exit</p>
+                    </a>
+                </span>
                 <span class="navItem">
                     <a class="navA" href="./dataPage.html">
-                    <img src="png/bxs-data.png" alt="data icon"><p>data</p></a>
+                        <img src="png/bxs-data.png" alt="Data Icon">
+                        <p>data</p>
+                    </a>
                 </span>
             </section>
         </nav>
-        <h1>Hello to our web side</h1>
+        <h1>Welcome to Our Website</h1>
     </header>
     <main>
         <article>
-            <form id="searchComputer">
-                <button>
-                    <img id="imgSearch" src="png/bx-search.png" alt="search icon">
+            <form id="searchComputer" onsubmit="searchComputers(event);">
+                <button type="submit">
+                    <img id="imgSearch" src="png/bx-search.png" alt="Search Icon">
                 </button>
                 <div>
-                    <input id="searchInput" type="text" placeholder="Search computer...">
+                    <input id="searchInput" type="text" placeholder="Search computer..." oninput="filterComputers()">
                 </div>
             </form>
         </article>
         <article>
             <ul id="computerList">
-                <li class="listItem">Your name</li>
-                <li class="listItem">Your password</li>
-                <li class="listItem">Your family</li>
-                <li class="listItem">Your address</li>
             </ul>
         </article>
     </main>
     <footer>
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
