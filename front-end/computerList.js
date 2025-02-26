@@ -31,10 +31,14 @@ function displayComputers(computers) {
         button.textContent = computer;
         button.onclick = () => tocomputer(computer);
 
+        // Style le bouton pour qu'il prenne toute la taille de l'élément <li>
+        button.style.cssText = "all: unset; width: 100%; height: 100%; cursor: pointer; display: block;";
+
         item.appendChild(button);
         box.appendChild(item);
     });
 }
+
 
 function filterComputers() {
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
