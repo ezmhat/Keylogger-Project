@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Key logger</title>
     <link rel="stylesheet" type="text/css" href="loginPage.css">
+    <script src="login.js" defer></script>
 </head>
 
 <body>
@@ -15,24 +16,21 @@
     <main>
         <article>
             <div>
-                <samp>
-
-                </samp>
-                <form>
+                <samp id="error-message" style="color: red;"></samp>
+                <form id="loginForm">
                     <fieldset>
                         <div>
-                            <img src="new_icon.webp">
+                            <img src="new_icon.webp" alt="Icon">
                         </div>
                         <div class="inputDiv">
                             <label for="name">Your name</label>
-                            <input id="name" type="text" maxlength="20" placeholder="שם - Name">
+                            <input id="name" type="text" maxlength="20" placeholder="שם - Name" required>
                         </div>
                         <div class="inputDiv">
                             <label for="password">Your password</label>
-                            <input id="password" type="password" maxlength="5" placeholder="סיסמה - Password">
+                            <input id="password" type="password" maxlength="5" placeholder="סיסמה - Password" required>
                         </div>
-
-                        <button id="enter" class="inputDiv">Enter</button>
+                        <button id="enter" class="inputDiv" type="submit">Enter</button>
                     </fieldset>
                 </form>
             </div>

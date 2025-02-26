@@ -1,12 +1,12 @@
-body{
+body {
     background: url("https://www.yo-yoo.co.il/rekaim/images/uploads/abstract-1891289_1280.jpg");
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-header{
+header {
     align-items: center !important;
-    background-color:#cac4c431;
+    background-color: #cac4c431;
     color: #fff;
     display: flex;
     height: var(--header-height);
@@ -18,36 +18,36 @@ header{
     text-align: center;
 }
 
-#navSection{
+#navSection {
     display: flex;
     align-items: center;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-.navItem{
-    background-color:rgba(128, 128, 128, 0.301);
+.navItem {
+    background-color: rgba(128, 128, 128, 0.301);
     width: 130px;
     margin: 4px;
     border-radius: 10px;
     box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }
 
-.navA{
+.navA {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color:#b2a4a4;
+    color: #b2a4a4;
     font: bold 26px 'pauzafot-book', Copperplate, sans-serif;
 }
 
-h1{
+h1 {
     color: #b2a4a4;
     margin-right: 45%;
     font: bold 30px 'pauzafot-book', Copperplate, sans-serif;
 }
 
-#cyberIcon{
+#cyberIcon {
     border: black;
     width: 110px;
     height: 110px;
@@ -55,7 +55,7 @@ h1{
     padding: 5px;
 }
 
-#searchComputer{
+#searchComputer {
     margin-top: 150px;
     width: 60%;
     margin-left: auto;
@@ -75,11 +75,11 @@ button {
     cursor: pointer;
 }
 
-#imgSearch{
+#imgSearch {
     padding-left: 15px;
 }
 
-#searchInput{
+#searchInput {
     width: 812px;
     line-height: 34px;
     color: rgb(223, 207, 207);
@@ -98,7 +98,7 @@ input[type=text] {
     border: 2px solid red;
 }
 
-#computerList{
+#computerList {
     list-style: none;
     width: 60%;
     height: 400px;
@@ -106,17 +106,17 @@ input[type=text] {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    background-color:#cac4c431;
+    background-color: #cac4c431;
     border-radius: 15px;
     border-radius: 15px;
     box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }
 
-li{
+li {
     padding-left: 10px;
     padding-top: 10px;
     color: rgb(223, 207, 207);
-    font-family: Courier New; 
+    font-family: Courier New;
     margin: 14px;
     margin-top: 12px !important;
     height: 40px;
