@@ -1,5 +1,5 @@
 body{
-    background: url("https://www.yo-yoo.co.il/rekaim/images/uploads/abstract-1891289_1280.jpg");
+    background: url("background.jpg");
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -21,9 +21,9 @@ header{align-items: center;
 h1{
     text-align: center;
     color: white;
-    text-shadow: 2px 2px 4px #eae7e3;
     margin-left: auto;
     margin-right: auto;
+    font: bold 30px 'pauzafot-book', Papyrus, sans-serif;
 }
 
 main{
