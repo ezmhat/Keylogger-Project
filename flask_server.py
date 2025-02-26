@@ -93,6 +93,15 @@ def read_logs(computer_id, date, start_time=None, end_time=None):
 
     return {'logs': logs}, 200
 
+@app.route('/computers', methods=['GET'])
+def get_computers():
+    if not os.path.exists(BASE_DIR):  # אם התיקייה לא קיימת, נחזיר רשימה ריקה
+        return jsonify({"computers": []})
+
+    computers = [d for d in os.listdir(BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
+    return jsonify({"computers": computers})
+
+
 
 # נתיב להחזרת הלוגים לפי מחשב, תאריך ושעות אופציונליות
 @app.route('/logs', methods=['GET'])
