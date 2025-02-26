@@ -1,5 +1,5 @@
 body{
-    background: url("https://www.yo-yoo.co.il/rekaim/images/uploads/abstract-1891289_1280.jpg");
+    background: url("background.jpg");
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -43,6 +43,8 @@ header{
 
 h1{
     color: #b2a4a4;
+    margin-right: 400px;
+    font: bold 30px 'pauzafot-book', Papyrus, sans-serif;
 }
 
 #cyberIcon{
@@ -53,14 +55,58 @@ h1{
     padding: 5px;
 }
 
-#dataTable{
+#searchDate{
     margin-top: 150px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    padding: none;
+    height: 64px;
+    background-color: rgba(128, 128, 128, 0.301);
+    border-radius: 13px;
+    box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
+}
+
+#searchInput{
+    margin: 5px;
+    width: 100%;
+    line-height: 37px;
+    color: rgb(223, 207, 207);
+    background-color: rgba(128, 128, 128, 0.301);
+    border-radius: 0 10px 10px 0;
+    direction: ltr;
+    font: normal 26px 'pauzafot-book', Courier New, sans-serif;
+}
+
+button {
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#imgSearch{
+    padding-left: 15px;
+}
+
+input::placeholder {
+    color: #b2a4a4;
+    opacity: 1;
+}
+
+input[type=date] {
+    border: 2px solid red;
+}
+
+#dataTable{
     list-style: none;
     width: 60%;
     height: 400px;
     font: normal 26px 'pauzafot-book', Courier New, sans-serif;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 26px;
     padding: 0;
     background-color:#cac4c431;
     border-radius: 15px;
@@ -68,7 +114,8 @@ h1{
     box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }
 
-.listItem{
+tr{
+    width: 100%;
     color: rgb(223, 207, 207);
     font-family: Courier New; 
     margin: 14px;
@@ -80,6 +127,6 @@ h1{
     left: 0;
 }
 
-td{
-    color: #eae4e4;
+td {
+    height: 40px; /* עוזר לוודא שהגובה יישמר */
 }
