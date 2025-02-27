@@ -1,26 +1,5 @@
-body{
-    background: url("background.jpg");
-    background-repeat:no-repeat;
-    background-size:cover;
-}
-
-header{align-items: center;
-    background-color:#cac4c431;
-    color: #fff;
-    display: flex;
-    height: var(--header-height);
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    left: 0;
+#title{
     text-align: center;
-}
-
-h1{
-    text-align: center;
-    color: white;
     margin-left: auto;
     margin-right: auto;
     font: bold 30px 'pauzafot-book', Papyrus, sans-serif;
@@ -31,6 +10,7 @@ main{
 }
 
 form{
+    margin-top: 65px;
     width: 40%;
     color: rgb(173, 21, 24);
     font: normal 26px 'pauzafot-book', Arial, sans-serif;
@@ -46,13 +26,6 @@ fieldset{
     box-shadow: 0 5px 10px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }
 
-img{
-    border: black;
-    width: 120px;
-    height: 120px;
-    border-radius: 58px !important;
-}
-
 p{
     padding-top: 0%;
 }
@@ -65,8 +38,13 @@ label{
     display: inline-block;
     max-width: 100%;
     margin-bottom: 5px;
-    font-weight: 700;
-    font-family: Courier New;
+    font-weight: 800;
+    font: normal 26px 'pauzafot-book', Courier New, sans-serif;
+    text-shadow: 
+    -1px -1px 0 white,  
+    1px -1px 0 white,  
+    -1px 1px 0 white,  
+    1px 1px 0 white;
 }
 
 input{
@@ -85,12 +63,13 @@ input{
     text-align: center;
 }
 
-input[type=text] {
-    border: 2px solid red;
-}
-
-input[type=password] {
-    border: 2px solid red;
+input::placeholder {
+    color: white;
+    text-shadow: 
+        -1px -1px 0 black,  
+        1px -1px 0 black,  
+        -1px 1px 0 black,  
+        1px 1px 0 black;
 }
 
 button{
@@ -105,4 +84,13 @@ button{
     min-width: 100px;
     text-align: center;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #b30000;
+}
+
+button:active {
+    background-color: #7f0000;
+    box-shadow: 0 1px 5px 0 rgba(244, 237, 237, 0.815), 0 8px 25px 0 rgba(239, 236, 236, 0.19);
 }

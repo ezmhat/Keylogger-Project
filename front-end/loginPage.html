@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Key logger</title>
     <link rel="stylesheet" type="text/css" href="loginPage.css">
+    <link rel="stylesheet" type="text/css" href="global.css">
     <script src="login.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Welcome to key logger</h1>
+        <img id="cyberIcon" src="new_icon.webp" alt="Cyber Men Icon">
+        <h1 id="title">Welcome to key logger!!!</h1>
+        <div id="user">
+            <div id="userLock">
+                <img src="png/bxs-lock.png" alt="Icon user">
+            </div>
+        </div>
     </header>
+    <div class="background-container" style="width: 100%; margin-top: 120px;">
+        <iframe src="animation.html"></iframe>
+    </div>
     <main>
         <article>
             <div>
@@ -20,7 +30,7 @@
                 <form id="loginForm">
                     <fieldset>
                         <div>
-                            <img src="new_icon.webp" alt="Icon">
+                            <img src="png/bxs-user-circle.png" alt="Icon">
                         </div>
                         <div class="inputDiv">
                             <label for="name">Your name</label>
@@ -35,6 +45,19 @@
                 </form>
             </div>
         </article>
+        <div id="bthn" lang="en"></div><script>
+            (function () {
+               var script = document.createElement("script");
+               script.type = "text/javascript";
+               script.src = "https://bringthemhomenow.net/1.1.0/hostages-ticker.js";
+               script.setAttribute(
+                 "integrity",
+                 "sha384-DHuakkmS4DXvIW79Ttuqjvl95NepBRwfVGx6bmqBJVVwqsosq8hROrydHItKdsne"
+               );
+               script.setAttribute("crossorigin", "anonymous");
+               document.getElementsByTagName("head")[0].appendChild(script);
+             })();
+            </script>
     </main>
 </body>
 

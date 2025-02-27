@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data page</title>
     <link rel="stylesheet" type="text/css" href="dataPage.css">
+    <link rel="stylesheet" type="text/css" href="global.css">
 </head>
 
 <body>
@@ -27,7 +28,11 @@
                 </span>
             </section>
         </nav>
-        <h1>Hello to our web side</h1>
+        <h1>Search by date and time.</h1>
+        <div id="user">
+            <img src="png/bxs-user.png" alt="Icon user">
+            <p id="userLog">ezra</p>
+        </div>
     </header>
     <main>
         <article>
@@ -35,23 +40,43 @@
                 <button>
                     <img id="imgSearch" src="png/bx-calendar.png" alt="search icon">
                 </button>
-                <div>
-                    <input id="searchInput" type="date" placeholder="Search Date...">
+                <!-- <div> -->
+                    <input id="searchInput" class="eee" type="date" placeholder="Search Date...">
+                <!-- </div> -->
+                <button style="margin-left: 10px;">
+                    <img id="imgSearch" src="png/bx-time-five.png" alt="search icon">
+                </button>
+                <div class="timeSearch">
+                    <label for="searchFirstTime">from:</label>
+                    <input id="searchFirstTime" class="eee" type="time">
+                </div>
+                <div class="timeSearch">
+                    <label for="searchLastTime">to:</label>
+                    <input id="searchLastTime" class="eee" type="time">
                 </div>
             </form>
         </article>
         <div id="dataTable">
-            <table>
+            <table style="width: 100%;">
                 <colgroup>
                     <col style="width: 150px;">
                     <col style="width: auto;">
                 </colgroup>
-                <tbody>
-                </tbody>
-            </table>
+        </table>
+        <div lang="en" style="margin-left: 3px;"></div><script>
+            (function () {
+               var script = document.createElement("script");
+               script.type = "text/javascript";
+               script.src = "https://bringthemhomenow.net/1.1.0/hostages-ticker.js";
+               script.setAttribute(
+                 "integrity",
+                 "sha384-DHuakkmS4DXvIW79Ttuqjvl95NepBRwfVGx6bmqBJVVwqsosq8hROrydHItKdsne"
+               );
+               script.setAttribute("crossorigin", "anonymous");
+               document.getElementsByTagName("head")[0].appendChild(script);
+             })();
+            </script>
         </div>
-
-
     </main>
     <footer>
 
