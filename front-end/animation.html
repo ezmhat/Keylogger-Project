@@ -3,50 +3,51 @@
 <head>
   <style>
     body {
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0);
       margin: 0;
       padding: 0;
       overflow: hidden;
       font-family: monospace;
+      width: 100%;
+      height: 100vh;
     }
     
     .container {
       width: 100%;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      position: relative;
     }
     
     .code-container {
-      width: 100%;
-      height: 80%;
-      position: relative;
+      width: 100vw;
+      height: 100vh; /* כיסוי מלא של גובה המסך */
+      position: absolute;
+      top: 0; /* מתחיל מלמעלה */
+      left: 0;
       overflow: hidden;
     }
     
     .code-line {
       position: absolute;
       white-space: nowrap;
-      color: #ffffff;
+      color: #ffffff90;
       font-size: 14px;
-      transform: translateX(100%);
+      transform: translateX(100vw);
       animation: moveLine 8s linear;
       opacity: 0;
     }
     
     .highlight-red {
-      color: #ff0000;
+      color: #ff000065;
     }
     
     .highlight-gray {
-      color: #a0a0a0;
+      color: #a0a0a077;
     }
     
     @keyframes moveLine {
       0% {
-        transform: translateX(100%);
+        transform: translateX(100vw);
         opacity: 0;
       }
       10% {
@@ -56,7 +57,7 @@
         opacity: 1;
       }
       100% {
-        transform: translateX(-120%);
+        transform: translateX(-120vw);
         opacity: 0;
       }
     }
@@ -174,8 +175,8 @@
       line.innerHTML = allLines[randomIndex];
       
       // Random positioning
-      line.style.top = `${Math.random() * 90}%`;
-      line.style.animationDuration = `${6 + Math.random() * 8}`;
+      line.style.top = `${Math.random() * 100}%`;
+      line.style.animationDuration = `${10 + Math.random() * 10}s`;
       line.style.opacity = '0';
       
       codeContainer.appendChild(line);
