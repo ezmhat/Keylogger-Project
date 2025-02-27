@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, supports_credentials=True)
 # נתיב לשמירת הלוגים
 BASE_DIR = "logs"
 
