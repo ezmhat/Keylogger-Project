@@ -105,7 +105,7 @@ h1 {
 
 #homeNow{
     position: fixed;
-    left: 0;
+    /* left: 0; */
 }
 
 input[type=text] {
