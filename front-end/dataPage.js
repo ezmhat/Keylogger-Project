@@ -41,7 +41,12 @@ function decrypt(encryptedHex) {
 
 // Function to retrieve logs from the server based on the date
 async function get_log(date) {
-    let box = document.querySelector("#dataTable tbody"); // Cibler directement le tbody
+    let box = document.querySelector("#dataTable tbody");
+    if (!box) {
+        console.error("Element '#dataTable tbody' not found.");
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const computer = urlParams.get("computer"); // Get the 'computer' parameter from the URL
 
@@ -51,24 +56,22 @@ async function get_log(date) {
     }
 
     try {
-        // Perform a GET request to fetch logs for the selected date
         const response = await fetch(`http://127.0.0.1:5000/logs?computer_id=${computer}&date=${date}`, {
             method: "GET",
-            credentials: "include" // Permet d'envoyer les cookies de session avec la requête
+            credentials: "include"
         });
 
         if (response.status === 404) {
-            // Afficher un message si aucun log n'est trouvé
-            box.innerHTML = ""; // Effacer le tableau avant d'ajouter le message
+            box.innerHTML = "";
             const row = document.createElement("tr");
             const messageCell = document.createElement("td");
-            messageCell.colSpan = 2; // Fusionner les colonnes pour afficher le message
-            messageCell.innerText = "No logs found for this date."; // Message en anglais
-            messageCell.style.textAlign = "center"; // Centrer le texte
-            messageCell.style.color = "red"; // Changer la couleur du texte pour le rendre visible
+            messageCell.colSpan = 2;
+            messageCell.innerText = "No logs found for this date.";
+            messageCell.style.textAlign = "center";
+            messageCell.style.color = "red";
             row.appendChild(messageCell);
             box.appendChild(row);
-            return; // Sortir de la fonction si 404
+            return;
         }
 
         if (!response.ok) {
@@ -101,8 +104,6 @@ async function get_log(date) {
 // Add an event listener when the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     const dateInput = document.getElementById("searchInput");
-
-    // Check if the input element exists
     if (!dateInput) {
         console.error("Element 'searchInput' not found.");
         return;
@@ -127,4 +128,47 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});
+
+// Display the user's name if available
+document.addEventListener("DOMContentLoaded", () => {
+    const userName = localStorage.getItem("userName") || sessionStorage.getItem("userName");
+    const userLogElement = document.getElementById("userLog");
+
+    if (userLogElement && userName) {
+        userLogElement.innerText = userName;
+    } else {
+        console.warn("No name found or element 'userLog' missing.");
+    }
+});
+
+// Function to filter logs based on time range
+function filterLogsByTime() {
+    const fromTime = document.getElementById("searchFirstTime").value;
+    const toTime = document.getElementById("searchLastTime").value;
+
+    if (!fromTime || !toTime) {
+        console.warn("Please select a time range.");
+        return;
+    }
+
+    const box = document.querySelector("#dataTable tbody");
+    if (!box) {
+        console.error("Element '#dataTable tbody' not found.");
+        return;
+    }
+
+    const rows = box.querySelectorAll("tr");
+    rows.forEach(row => {
+        const timeCell = row.querySelector("td:first-child");
+        if (timeCell) {
+            const logTime = timeCell.innerText.trim();
+            row.style.display = (logTime >= fromTime && logTime <= toTime) ? "" : "none";
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchFirstTime")?.addEventListener("change", filterLogsByTime);
+    document.getElementById("searchLastTime")?.addEventListener("change", filterLogsByTime);
 });

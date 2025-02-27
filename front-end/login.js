@@ -9,11 +9,13 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userName, password }),
-            credentials: 'include' // Ajoute cette ligne
+            credentials: 'include'
         });
 
         const data = await response.json();
         if (response.ok) {
+            localStorage.setItem("userName", userName);
+
             window.location.href = "computerList.html";
         } else {
             document.getElementById("error-message").innerText = data.error || "❌ An error occurred. Please try again.";

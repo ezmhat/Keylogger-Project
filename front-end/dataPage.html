@@ -4,85 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data page</title>
+    <title>Data Page</title>
     <link rel="stylesheet" type="text/css" href="dataPage.css">
     <link rel="stylesheet" type="text/css" href="global.css">
 </head>
 
 <body>
     <header>
-        <img id="cyberIcon" src="new_icon.webp" alt="cyber men icon">
+        <img id="cyberIcon" src="new_icon.webp" alt="Cyber Men Icon">
         <nav>
             <section id="navSection">
                 <span class="navItem">
                     <a class="navA" href="./loginPage.html">
-                        <img src="png/bxs-lock.png" alt="lock icon">
-                        <p>exit</p>
+                        <img src="png/bxs-lock.png" alt="Lock Icon">
+                        <p>Exit</p>
                     </a>
                 </span>
                 <span class="navItem">
                     <a class="navA" href="./computerList.html">
-                        <img src="png/bx-desktop.png" alt="desktop icon">
-                        <p>main</p>
+                        <img src="png/bx-desktop.png" alt="Desktop Icon">
+                        <p>Main</p>
                     </a>
                 </span>
             </section>
         </nav>
-        <h1>Search by date and time.</h1>
+        <h1>Search by Date and Time</h1>
         <div id="user">
-            <img src="png/bxs-user.png" alt="Icon user">
-            <p id="userLog">ezra</p>
+            <img src="png/bxs-user.png" alt="User Icon">
+            <p id="userLog">User</p>
         </div>
     </header>
+
     <main>
         <article>
             <form id="searchDate">
                 <button>
-                    <img id="imgSearch" src="png/bx-calendar.png" alt="search icon">
+                    <img id="imgSearch" src="png/bx-calendar.png" alt="Search Icon">
                 </button>
-                <!-- <div> -->
-                    <input id="searchInput" class="eee" type="date" placeholder="Search Date...">
-                <!-- </div> -->
+                <input id="searchInput" class="eee" type="date" placeholder="Search Date...">
                 <button style="margin-left: 10px;">
-                    <img id="imgSearch" src="png/bx-time-five.png" alt="search icon">
+                    <img id="imgSearch" src="png/bx-time-five.png" alt="Search Icon">
                 </button>
                 <div class="timeSearch">
-                    <label for="searchFirstTime">from:</label>
+                    <label for="searchFirstTime">From:</label>
                     <input id="searchFirstTime" class="eee" type="time">
                 </div>
                 <div class="timeSearch">
-                    <label for="searchLastTime">to:</label>
+                    <label for="searchLastTime">To:</label>
                     <input id="searchLastTime" class="eee" type="time">
                 </div>
             </form>
         </article>
+
         <div id="dataTable">
             <table style="width: 100%;">
                 <colgroup>
                     <col style="width: 150px;">
                     <col style="width: auto;">
                 </colgroup>
-        </table>
-        <div lang="en" style="margin-left: 3px;"></div><script>
-            (function () {
-               var script = document.createElement("script");
-               script.type = "text/javascript";
-               script.src = "https://bringthemhomenow.net/1.1.0/hostages-ticker.js";
-               script.setAttribute(
-                 "integrity",
-                 "sha384-DHuakkmS4DXvIW79Ttuqjvl95NepBRwfVGx6bmqBJVVwqsosq8hROrydHItKdsne"
-               );
-               script.setAttribute("crossorigin", "anonymous");
-               document.getElementsByTagName("head")[0].appendChild(script);
-             })();
-            </script>
+                <tbody></tbody>
+            </table>
         </div>
+
+        <div lang="en" style="margin-left: 3px;"></div>
+        <script>
+            (function () {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = "https://bringthemhomenow.net/1.1.0/hostages-ticker.js";
+                script.setAttribute("integrity", "sha384-DHuakkmS4DXvIW79Ttuqjvl95NepBRwfVGx6bmqBJVVwqsosq8hROrydHItKdsne");
+                script.setAttribute("crossorigin", "anonymous");
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
+        </script>
     </main>
-    <footer>
 
-    </footer>
+    <footer></footer>
+
     <script src="dataPage.js"></script>
-
 </body>
 
 </html>
