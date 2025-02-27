@@ -103,11 +103,6 @@ h1 {
     padding: 5px;
 }
 
-#homeNow{
-    position: fixed;
-    /* left: 0; */
-}
-
 input[type=text] {
     border: 2px solid red;
 }
